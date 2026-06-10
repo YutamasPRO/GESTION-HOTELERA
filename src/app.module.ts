@@ -12,6 +12,8 @@ import { Estadia } from './estadia/entities/estadia.entity';
 import { Consumo } from './consumo/entities/consumo.entity';
 import { Habitacion } from './habitacion/entities/habitacion.entity';
 import { RoomType } from './room-type/entities/room-type.entity';
+import { Student } from './student/entities/student.entity';
+import { StudentModule } from './student/student.module';
 
 @Module({
   imports: [
@@ -22,7 +24,7 @@ import { RoomType } from './room-type/entities/room-type.entity';
       username: process.env.DB_USER ?? 'root',
       password: process.env.DB_PASS ?? '',
       database: process.env.DB_NAME ?? 'hotel',
-      entities: [Guest, Estadia, Consumo, Habitacion, RoomType],
+      entities: [Guest, Estadia, Consumo, Habitacion, RoomType, Student],
       autoLoadEntities: true,
       synchronize: true, 
     }),
@@ -31,6 +33,7 @@ import { RoomType } from './room-type/entities/room-type.entity';
     ConsumoModule,
     HabitacionModule,
     RoomTypeModule,
+    StudentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
