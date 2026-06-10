@@ -52,4 +52,45 @@ docker run -p 3000:3000 \
   gestion-hotelera
 ```
 
+## Migraciones (Base de Datos)
+
+### Ejecutar migraciones localmente
+
+```bash
+npm run build
+npm run migrate:run
+```
+
+### Revertir última migración
+
+```bash
+npm run migrate:revert
+```
+
+## Despliegue en Render + Aiven
+
+### Pasos:
+
+1. **En Render, crear nuevo Web Service y conectar repo GitHub.**
+
+2. **Configurar en Render (Build & Deploy):**
+   - **Build Command:** `npm ci && npm run build`
+   - **Release Command:** `npm run migrate:run`
+   - **Start Command:** `npm run start:prod`
+
+3. **Variables de entorno en Render (copiar de Aiven):**
+   ```
+   DB_HOST=xxxxx.aivencloud.com
+   DB_PORT=12345
+   DB_USER=avnadmin
+   DB_PASS=your_password
+   DB_NAME=defaultdb
+   DB_SSL=true
+   NODE_ENV=production
+   ```
+
+4. **Verificar en Aiven:**
+   - Tabla `students` se crea automáticamente en primer despliegue.
+   - Endpoints disponibles en `https://your-render-url.com/api/docs`
+
 ## Resumen de configuración
