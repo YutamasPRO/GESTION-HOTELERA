@@ -1,0 +1,33 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { RoomTypeController } from './room-type.controller';
+import { RoomTypeService } from './room-type.service';
+
+describe('RoomTypeController', () => {
+  let controller: RoomTypeController;
+
+  const mockRoomTypeService = {
+    create: jest.fn(),
+    findAll: jest.fn(),
+    findOne: jest.fn(),
+    update: jest.fn(),
+    remove: jest.fn(),
+  };
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      controllers: [RoomTypeController],
+      providers: [
+        {
+          provide: RoomTypeService,
+          useValue: mockRoomTypeService,
+        },
+      ],
+    }).compile();
+
+    controller = module.get<RoomTypeController>(RoomTypeController);
+  });
+
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
+  });
+});
