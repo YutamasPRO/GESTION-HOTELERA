@@ -15,6 +15,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME ?? 'hotel',
   entities: [Guest, Estadia, Consumo, Habitacion, RoomType, Student],
   migrations: ['dist/migrations/*.js'],
+  synchronize: true,
   migrationsRun: process.env.NODE_ENV === 'production',
   ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
   logging: process.env.NODE_ENV !== 'production',
