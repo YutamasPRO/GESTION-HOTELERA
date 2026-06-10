@@ -15,7 +15,7 @@ export class StudentService {
   }
 
   create(student: Partial<Student>): Promise<Student> {
-    const ent = this.repo.create(student as any);
-    return this.repo.save(ent);
+    const ent = this.repo.create(student);
+    return this.repo.save(ent) as Promise<Student>;
   }
 }
